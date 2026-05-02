@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile</title>
+
+<style>
+body{
+  font-family: Arial;
+  background:#f5f5f5;
+}
+
+.profile-box{
+  width:350px;
+  margin:100px auto;
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+h2{
+  margin-bottom:20px;
+}
+
+.info{
+  margin:15px 0;
+  font-size:16px;
+}
+
+button{
+  margin-top:20px;
+  padding:10px 20px;
+  border:none;
+  background:#111;
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="profile-box">
+  <h2>My Profile</h2>
+
+  <div class="info"><b>Name:</b> <span id="pName"></span></div>
+  <div class="info"><b>Email:</b> <span id="pEmail"></span></div>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+let user = JSON.parse(localStorage.getItem("user"));
+
+// ❌ agar login nahi hai
+if(!user){
+  alert("Please login first ❌");
+  window.location.href = "index.html";
+}
+
+// 🔥 ALWAYS fresh user (latest data ensure)
+let name = user.name ? user.name.trim() : "Not available";
+let email = user.email || "Not available";
+
+// 🔥 show data
+document.getElementById("pName").innerText = name;
+document.getElementById("pEmail").innerText = email;
+
+// 🔥 logout
+function logout(){
+  localStorage.removeItem("user");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

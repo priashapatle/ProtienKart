@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProteinKart - Premium Supplements</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#E11D48;
+  --primary-dark:#BE123C;
+  --primary-light:#FFF1F2;
+  --black:#111;
+  --white:#FAFAFA;
+  --gray-50:#F9FAFB;
+  --gray-100:#F3F4F6;
+  --gray-200:#E5E7EB;
+  --gray-300:#D1D5DB;
+  --gray-400:#9CA3AF;
+  --gray-500:#6B7280;
+  --gray-600:#4B5563;
+  --gray-700:#374151;
+  --gray-800:#1F2937;
+  --gray-900:#111827;
+  --green:#16A34A;
+  --green-light:#F0FDF4;
+  --amber:#F59E0B;
+  --blue:#3B82F6;
+  --radius:12px;
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.05);
+  --shadow:0 1px 3px rgba(0,0,0,0.1),0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -2px rgba(0,0,0,0.1);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -4px rgba(0,0,0,0.1);
+  --shadow-xl:0 20px 25px -5px rgba(0,0,0,0.1),0 8px 10px -6px rgba(0,0,0,0.1);
+}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--gray-900);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--gray-100)}
+::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--gray-400)}
+a{text-decoration:none;color:inherit}
+button{font-family:'Inter',sans-serif;cursor:pointer}
+
+/* TOP BAR */
+.top-bar{
+  background:var(--gray-900);color:var(--gray-300);
+  font-size:12px;padding:6px 32px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.top-bar a{color:var(--gray-400);margin:0 10px;transition:.2s;font-size:11px}
+.top-bar a:hover{color:white}
+.top-links{display:flex;align-items:center;gap:4px}
+
+/* HEADER */
+header{
+  background:white;
+  border-bottom:1px solid var(--gray-200);
+  padding:0 32px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-icon{width:36px;height:36px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:16px}
+.logo h1{font-size:22px;font-weight:800;color:var(--gray-900);letter-spacing:-.5px}
+.logo h1 span{color:var(--primary)}
+.search-box{flex:1;max-width:480px;margin:0 32px;position:relative}
+.search-box input{
+  width:100%;padding:10px 16px 10px 40px;
+  border:1.5px solid var(--gray-200);border-radius:10px;
+  font-size:13px;background:var(--gray-50);color:var(--gray-900);
+  transition:.2s;
+}
+.search-box input:focus{outline:none;border-color:var(--primary);background:white;box-shadow:0 0 0 3px rgba(225,29,72,.08)}
+.search-box i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--gray-400);font-size:14px}
+.header-actions{display:flex;align-items:center;gap:12px}
+.header-icon{
+  width:40px;height:40px;border-radius:10px;
+  border:1.5px solid var(--gray-200);background:white;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;color:var(--gray-600);font-size:16px;
+  transition:.2s;cursor:pointer;
+}
+.header-icon:hover{border-color:var(--primary);color:var(--primary)}
+.header-icon .count{
+  position:absolute;top:-4px;right:-4px;
+  background:var(--primary);color:white;font-size:9px;font-weight:700;
+  width:18px;height:18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid white;
+}
+.login-btn{
+  padding:8px 20px;background:var(--gray-900);color:white;
+  border:none;border-radius:8px;font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:6px;transition:.2s;
+}
+.login-btn:hover{background:var(--gray-800)}
+
+/* CATEGORY NAV */
+.cat-nav{
+  background:white;border-bottom:1px solid var(--gray-100);
+  padding:0 32px;display:flex;overflow-x:auto;gap:0;
+}
+.cat-nav::-webkit-scrollbar{height:0}
+.cat-nav a{
+  padding:12px 18px;font-size:12px;font-weight:500;color:var(--gray-500);
+  white-space:nowrap;border-bottom:2px solid transparent;transition:.2s;cursor:pointer;
+  text-transform:uppercase;letter-spacing:.3px;
+}
+.cat-nav a:hover,.cat-nav a.active{color:var(--primary);border-bottom-color:var(--primary)}
+
+/* HERO */
+.hero-section{
+  background:var(--gray-50);
+  border-bottom:1px solid var(--gray-100);
+  position:relative;overflow:hidden;
+}
+.hero-slider{display:flex;transition:transform .5s ease;width:100%}
+.hero-slide{
+  min-width:100%;padding:60px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  min-height:420px;
+}
+.hero-slide:nth-child(1){background:linear-gradient(135deg,#FFF1F2 0%,#FAFAFA 100%)}
+.hero-slide:nth-child(2){background:linear-gradient(135deg,#F0FDF4 0%,#FAFAFA 100%)}
+.hero-slide:nth-child(3){background:linear-gradient(135deg,#EFF6FF 0%,#FAFAFA 100%)}
+.hero-text{max-width:520px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:white;border:1px solid var(--gray-200);
+  padding:6px 14px;border-radius:50px;font-size:11px;font-weight:600;
+  color:var(--gray-600);margin-bottom:16px;
+}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-text h1{font-size:48px;font-weight:900;line-height:1.05;color:var(--gray-900);margin-bottom:16px;letter-spacing:-1px}
+.hero-text h1 em{color:var(--primary);font-style:normal}
+.hero-text p{font-size:15px;color:var(--gray-500);line-height:1.6;margin-bottom:28px}
+.hero-actions{display:flex;gap:12px}
+.btn-fill{
+  padding:12px 28px;background:var(--primary);color:white;border:none;
+  border-radius:10px;font-size:14px;font-weight:600;transition:.2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-fill:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-outline{
+  padding:12px 28px;background:white;color:var(--gray-700);
+  border:1.5px solid var(--gray-200);border-radius:10px;
+  font-size:14px;font-weight:600;transition:.2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-outline:hover{border-color:var(--gray-400);transform:translateY(-1px)}
+.hero-img{position:relative}
+.hero-img img{height:320px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.08));animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-stats{display:flex;gap:32px;margin-top:32px}
+.hero-stat h3{font-size:24px;font-weight:800;color:var(--gray-900)}
+.hero-stat p{font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px}
+.hero-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.hero-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--gray-300);cursor:pointer;transition:.3s;border:none;
+}
+.hero-dot.active{background:var(--primary);width:24px;border-radius:4px}
+
+/* FLASH BAR */
+.flash-bar{
+  background:var(--gray-900);color:white;
+  padding:12px 32px;display:flex;align-items:center;justify-content:center;gap:24px;
+  font-size:13px;
+}
+.flash-bar strong{font-weight:700;display:flex;align-items:center;gap:6px}
+.flash-timer{display:flex;gap:6px}
+.flash-timer .box{
+  background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;text-align:center;min-width:44px;
+}
+.flash-timer .num{font-size:16px;font-weight:700}
+.flash-timer .lbl{font-size:8px;text-transform:uppercase;opacity:.6}
+
+/* TRUST */
+.trust-bar{
+  background:white;border-bottom:1px solid var(--gray-100);
+  padding:20px 32px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap;
+}
+.trust-item{display:flex;align-items:center;gap:10px}
+.trust-item .icon{width:40px;height:40px;background:var(--gray-50);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--gray-600);font-size:16px}
+.trust-item h4{font-size:13px;font-weight:600;color:var(--gray-800)}
+.trust-item p{font-size:11px;color:var(--gray-400)}
+
+/* SECTIONS */
+.section{padding:48px 32px}
+.section-alt{background:var(--gray-50)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px}
+.section-head h2{font-size:24px;font-weight:800;color:var(--gray-900);letter-spacing:-.5px}
+.section-head h2 em{color:var(--primary);font-style:normal}
+.section-head p{font-size:13px;color:var(--gray-400);margin-top:4px}
+.section-head .more{font-size:13px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:4px;transition:.2s}
+.section-head .more:hover{gap:8px}
+
+/* BRANDS */
+.brand-logo {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo img {
+  max-height: 100%;
+  max-width: 80px;
+  object-fit: contain;
+}
+
+.cat-icon img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.meal-top {
+  padding: 16px 20px 10px;
+}
+
+.meal-top h3 {
+  margin-bottom: 10px;
+}
+
+.meal-icon {
+  display: none;
+}
+
+.flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 240px; /* thoda bada for better UI */
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flip .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+/* ✅ FRONT FIX */
+.flip-front {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* image 70% space lega */
+.flip-front img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+}
+
+/* text remaining space lega */
+.flip-front h3 {
+  height: 30%;
+  padding: 10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+/* BACK SAME HEIGHT */
+.flip-back {
+  background: #111827;
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+}
+
+.deal-img{
+  width:80px;
+  height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.deal-img img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
+}
+
+.logo h1 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.logo h1 span {
+  color: #E11D48; /* same red */
+}
+
+.ci{
+  display:block;
+}
+
+.ci-img-full{
+  width:100%;
+  height:120px;
+  background:white;
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ci-img-full img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+
+.brands-row{display:flex;gap:16px;overflow-x:auto;padding:4px 0}
+.brands-row::-webkit-scrollbar{height:0}
+.brand-chip{
+  min-width:140px;padding:16px 20px;background:white;
+  border:1.5px solid var(--gray-100);border-radius:12px;
+  text-align:center;cursor:pointer;transition:.2s;flex-shrink:0;
+}
+.brand-chip:hover{border-color:var(--primary);box-shadow:var(--shadow-sm)}
+.brand-chip .abbr{font-size:20px;font-weight:900;color:var(--gray-300);margin-bottom:4px;transition:.2s}
+.brand-chip:hover .abbr{color:var(--primary)}
+.brand-chip .name{font-size:11px;color:var(--gray-500);font-weight:500}
+
+/* CATEGORIES */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.cat-card{
+  background:white;border:1.5px solid var(--gray-100);border-radius:14px;
+  padding:20px 12px;text-align:center;cursor:pointer;transition:.2s;
+}
+.cat-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.cat-icon{
+  width:52px;height:52px;border-radius:14px;margin:0 auto 10px;
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+}
+.cat-card h3{font-size:12px;font-weight:600;color:var(--gray-800);margin-bottom:2px}
+.cat-card p{font-size:10px;color:var(--gray-400)}
+
+/* FILTER TABS */
+.filters{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.ftab{
+  padding:8px 18px;border-radius:50px;
+  border:1.5px solid var(--gray-200);background:white;
+  font-size:12px;font-weight:500;color:var(--gray-500);
+  transition:.2s;
+}
+.ftab:hover,.ftab.active{background:var(--gray-900);color:white;border-color:var(--gray-900)}
+
+/* PRODUCT GRID */
+.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.p-card{
+  background:white;border:1.5px solid var(--gray-100);border-radius:14px;
+  overflow:hidden;transition:.25s;position:relative;
+}
+.p-card:hover{border-color:var(--gray-300);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.p-badges{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:4px;z-index:5}
+.p-badge{
+  padding:3px 10px;border-radius:6px;font-size:10px;font-weight:600;
+  letter-spacing:.3px;
+}
+.p-badge-sale{background:#FEF2F2;color:#DC2626}
+.p-badge-best{background:#FFFBEB;color:#D97706}
+.p-badge-new{background:#F0FDF4;color:#16A34A}
+.p-badge-auth{background:#EFF6FF;color:#2563EB}
+.p-badge-veg{background:#F0FDF4;color:#16A34A}
+.p-wish{
+  position:absolute;top:10px;right:10px;z-index:5;
+  width:32px;height:32px;border-radius:50%;background:white;
+  border:1px solid var(--gray-200);display:flex;align-items:center;justify-content:center;
+  color:var(--gray-400);font-size:14px;cursor:pointer;transition:.2s;
+}
+.p-wish:hover,.p-wish.liked{background:var(--primary-light);color:var(--primary);border-color:var(--primary)}
+.p-img{
+  height:220px;background:var(--gray-50);display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.p-img img{max-height:190px;max-width:90%;object-fit:contain;transition:.4s}
+.p-card:hover .p-img img{transform:scale(1.05)}
+.p-img .emoji-fallback{font-size:64px;opacity:.4}
+.p-body{padding:16px}
+.p-brand{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--primary);margin-bottom:4px}
+.p-name{font-size:13px;font-weight:600;color:var(--gray-800);line-height:1.4;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.p-flavor{font-size:11px;color:var(--gray-400);margin-bottom:8px}
+.p-rating{display:flex;align-items:center;gap:4px;margin-bottom:8px}
+.p-rating .stars{color:var(--amber);font-size:11px}
+.p-rating .val{font-size:12px;font-weight:600;color:var(--gray-700)}
+.p-rating .cnt{font-size:10px;color:var(--gray-400)}
+.p-weights{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.p-wt{
+  padding:2px 8px;border:1px solid var(--gray-200);border-radius:6px;
+  font-size:10px;color:var(--gray-500);cursor:pointer;background:white;transition:.15s;
+}
+.p-wt:hover,.p-wt.active{border-color:var(--primary);color:var(--primary);background:var(--primary-light)}
+.p-price{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+.p-price .now{font-size:20px;font-weight:800;color:var(--gray-900)}
+.p-price .was{font-size:12px;color:var(--gray-400);text-decoration:line-through}
+.p-price .off{font-size:10px;font-weight:700;color:var(--green);background:var(--green-light);padding:2px 6px;border-radius:4px}
+.p-add:active {
+  transform: scale(0.97);
+}
+.p-add{
+  width:100%;padding:10px;border-radius:10px;
+  border:1.5px solid var(--gray-900);background:white;
+  font-size:12px;font-weight:600;color:var(--gray-900);
+  transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.p-add:hover{background:var(--gray-900);color:white}
+.p-add:disabled{border-color:var(--gray-200);color:var(--gray-300);cursor:not-allowed}
+.p-add:disabled:hover{background:white;color:var(--gray-300)}
+
+/* MEGA DEALS */
+.deals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.deal-card{
+  background:white;border:1.5px solid var(--gray-100);border-radius:14px;
+  padding:24px;display:flex;align-items:center;gap:20px;
+  cursor:pointer;transition:.2s;
+}
+.deal-card:hover{border-color:var(--primary);box-shadow:var(--shadow-md)}
+.deal-emoji{font-size:48px;flex-shrink:0}
+.deal-info .deal-brand{font-size:10px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.5px}
+.deal-info h3{font-size:14px;font-weight:600;color:var(--gray-800);margin:4px 0}
+.deal-info .deal-price{font-size:22px;font-weight:800;color:var(--gray-900)}
+.deal-info .deal-mrp{font-size:12px;color:var(--gray-400);text-decoration:line-through}
+.deal-info .deal-save{font-size:11px;font-weight:600;color:var(--green);margin-top:4px}
+
+/* MEAL PLANS */
+.meals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.meal-card{background:white;border:1.5px solid var(--gray-100);border-radius:14px;overflow:hidden;transition:.2s}
+.meal-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.meal-top{padding:20px 20px 16px}
+.meal-top .meal-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+.meal-top h3{font-size:16px;font-weight:700;color:var(--gray-800);margin-bottom:12px}
+.meal-macros{display:flex;gap:16px}
+.meal-macros .m{text-align:center}
+.meal-macros .m .v{font-size:18px;font-weight:800;color:var(--primary)}
+.meal-macros .m .l{font-size:9px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px}
+.meal-items{padding:0 20px 20px}
+.meal-items .mi{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--gray-50)}
+.meal-items .mi:last-child{border:none}
+.meal-items .mi i{color:var(--green);font-size:10px;flex-shrink:0}
+.meal-items .mi span{font-size:12px;color:var(--gray-600)}
+
+/* ADVICE */
+.advice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.advice-card{background:white;border:1.5px solid var(--gray-100);border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s}
+.advice-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.advice-img{height:180px;position:relative;display:flex;align-items:center;justify-content:center}
+.advice-img .advice-tag{position:absolute;top:12px;left:12px;padding:4px 12px;border-radius:6px;font-size:10px;font-weight:600;color:white}
+.advice-body{padding:16px 20px 20px}
+.advice-body h3{font-size:15px;font-weight:700;color:var(--gray-800);margin-bottom:8px;line-height:1.4}
+.advice-body p{font-size:12px;color:var(--gray-500);line-height:1.6;margin-bottom:12px}
+.advice-meta{display:flex;gap:16px;font-size:11px;color:var(--gray-400)}
+
+/* TESTIMONIALS */
+.test-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.test-card{background:white;border:1.5px solid var(--gray-100);border-radius:14px;padding:24px;transition:.2s}
+.test-card:hover{border-color:var(--gray-200)}
+.test-stars{color:var(--amber);font-size:13px;margin-bottom:12px}
+.test-text{font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:16px;font-style:italic}
+.test-user{display:flex;align-items:center;gap:10px}
+.test-avatar{width:38px;height:38px;border-radius:10px;background:var(--gray-100);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--gray-500)}
+.test-name{font-size:13px;font-weight:600;color:var(--gray-800)}
+.test-verified{font-size:10px;color:var(--green);display:flex;align-items:center;gap:3px}
+
+/* NEWSLETTER */
+.newsletter{
+  background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:20px;
+  padding:48px;text-align:center;margin:32px;
+}
+.newsletter h2{font-size:28px;font-weight:800;color:var(--gray-900);margin-bottom:8px}
+.newsletter h2 em{color:var(--primary);font-style:normal}
+.newsletter p{font-size:14px;color:var(--gray-400);margin-bottom:24px}
+.nl-form{display:flex;max-width:440px;margin:0 auto;gap:8px}
+.nl-form input{flex:1;padding:12px 18px;border:1.5px solid var(--gray-200);border-radius:10px;font-size:13px;background:white}
+.nl-form input:focus{outline:none;border-color:var(--primary)}
+.nl-form button{padding:12px 24px;background:var(--gray-900);color:white;border:none;border-radius:10px;font-size:13px;font-weight:600;transition:.2s}
+.nl-form button:hover{background:var(--gray-800)}
+
+/* FOOTER */
+footer{background:var(--gray-900);padding:48px 32px 20px;color:var(--gray-300)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
+.footer-brand h2{font-size:22px;font-weight:800;color:white;margin-bottom:12px}
+.footer-brand h2 span{color:var(--primary)}
+.footer-brand p{font-size:12px;color:var(--gray-500);line-height:1.7;margin-bottom:16px}
+.footer-social{display:flex;gap:8px}
+.footer-social a{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:var(--gray-400);transition:.2s;font-size:14px}
+.footer-social a:hover{background:var(--primary);color:white}
+.footer-col h3{font-size:13px;font-weight:600;color:white;margin-bottom:14px}
+.footer-col a{display:block;font-size:12px;color:var(--gray-500);padding:3px 0;transition:.2s}
+.footer-col a:hover{color:var(--primary);padding-left:4px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:12px;color:var(--gray-500)}
+.pay-icons{display:flex;gap:8px;color:var(--gray-500);font-size:24px}
+
+/* CART SIDEBAR */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;opacity:0;visibility:hidden;transition:.3s;backdrop-filter:blur(4px)}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-sidebar{
+  position:fixed;top:0;right:-440px;width:420px;height:100%;
+  background:white;z-index:501;transition:.35s;display:flex;flex-direction:column;
+  box-shadow:-10px 0 30px rgba(0,0,0,.1);
+}
+.cart-sidebar.open{right:0}
+.cart-head{padding:20px 24px;border-bottom:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center}
+.cart-head h2{font-size:18px;font-weight:700}
+.cart-x{width:32px;height:32px;border-radius:8px;background:var(--gray-50);border:none;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gray-500);transition:.2s;cursor:pointer}
+.cart-x:hover{background:var(--gray-200)}
+.cart-body{flex:1;overflow-y:auto;padding:16px 24px}
+.cart-empty{text-align:center;padding:48px 20px;color:var(--gray-400);font-size:13px}
+.ci{display:flex;gap:12px;padding:14px;background:var(--gray-50);border-radius:12px;margin-bottom:10px}
+.ci-img{width:56px;height:56px;background:white;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ci-img img{max-width:100%;max-height:100%;object-fit:contain}
+.ci-img .ci-emoji{font-size:24px}
+.ci-info{flex:1}
+.ci-info .ci-b{font-size:9px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.5px}
+.ci-info h4{font-size:12px;font-weight:600;color:var(--gray-800)}
+.ci-info .ci-p{font-size:14px;font-weight:700;color:var(--gray-900);margin-top:2px}
+.ci-qty{display:flex;align-items:center;gap:6px;margin-top:6px}
+.ci-qbtn{width:24px;height:24px;border-radius:6px;border:1px solid var(--gray-200);background:white;font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s;color:var(--gray-600)}
+.ci-qbtn:hover{border-color:var(--gray-400)}
+.ci-rm{background:none;border:none;color:var(--gray-400);cursor:pointer;font-size:14px;align-self:flex-start;transition:.2s}
+.ci-rm:hover{color:var(--primary)}
+.cart-foot{padding:20px 24px;border-top:1px solid var(--gray-100)}
+.cart-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;color:var(--gray-500)}
+.cart-row.total{font-size:18px;font-weight:800;color:var(--gray-900);margin-top:8px;padding-top:10px;border-top:2px solid var(--gray-900)}
+.checkout-btn{
+  width:100%;padding:14px;background:var(--gray-900);color:white;
+  border:none;border-radius:12px;font-size:14px;font-weight:700;
+  margin-top:12px;transition:.2s;
+}
+.checkout-btn:hover{background:var(--gray-800);box-shadow:var(--shadow-md)}
+
+/* CHECKOUT MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:white;border-radius:16px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp .25s ease}
+@keyframes slideUp{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-x{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:8px;background:var(--gray-50);border:none;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:var(--gray-500);transition:.2s;z-index:2}
+.modal-x:hover{background:var(--gray-200)}
+.modal-body{padding:28px}
+.modal-title{font-size:22px;font-weight:800;color:var(--gray-900);margin-bottom:20px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:11px;font-weight:600;color:var(--gray-500);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.fg input{width:100%;padding:10px 14px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;transition:.2s;font-family:'Inter',sans-serif}
+.fg input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(225,29,72,.06)}
+.os-box{background:var(--gray-50);border-radius:10px;padding:14px 16px;margin-bottom:16px}
+.os-head{font-size:10px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.os-item{display:flex;justify-content:space-between;font-size:12px;color:var(--gray-600);margin-bottom:4px}
+.os-total{display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:var(--gray-900);border-top:1px solid var(--gray-200);margin-top:6px;padding-top:6px}
+.error-msg{font-size:12px;color:var(--primary);margin-bottom:8px;display:none}
+.place-btn{
+  width:100%;padding:13px;background:var(--primary);color:white;
+  border:none;border-radius:10px;font-size:14px;font-weight:700;
+  transition:.2s;
+}
+.place-btn:hover{background:var(--primary-dark)}
+.place-btn:disabled{background:var(--gray-200);color:var(--gray-400);cursor:not-allowed}
+.success-box{text-align:center;padding:32px 20px}
+.success-icon{width:56px;height:56px;border-radius:50%;background:var(--green-light);color:var(--green);font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.success-title{font-size:24px;font-weight:800;color:var(--gray-900);margin-bottom:8px}
+.success-sub{font-size:13px;color:var(--gray-500);line-height:1.6}
+.success-close{margin-top:16px;padding:10px 24px;background:var(--gray-900);color:white;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  background:#111;
+  color:white;
+  padding:14px 20px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:9999;
+
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .3s ease;
+}
+
+.toast.show{
+  opacity:1 !important;
+  transform:translateY(0) !important;
+}
+
+.auth-modal{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.auth-box{
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  width:300px;
+  text-align:center;
+}
+
+.auth-box input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+}
+
+.auth-box button{
+  width:100%;
+  padding:10px;
+  background:#111;
+  color:#fff;
+}
+
+.auth-box span{
+  color:red;
+  cursor:pointer;
+}
+
+/* BACK TOP */
+.back-top{
+  position:fixed;bottom:24px;left:24px;
+  width:44px;height:44px;border-radius:12px;
+  background:var(--gray-900);color:white;border:none;
+  font-size:16px;cursor:pointer;opacity:0;transition:.3s;z-index:100;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-lg);
+}
+.back-top.show{opacity:1}
+.back-top:hover{transform:scale(1.1)}
+
+/* LOADING */
+.loading-section{text-align:center;padding:48px;color:var(--gray-400);font-size:14px}
+.loading-section .spinner{width:32px;height:32px;border:3px solid var(--gray-200);border-top:3px solid var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* API STATUS */
+.api-status{
+  background:var(--primary-light);border:1px solid rgba(225,29,72,.15);
+  border-radius:10px;padding:16px 20px;margin-bottom:20px;
+  display:none;align-items:center;gap:10px;font-size:13px;color:var(--primary);
+}
+.api-status i{font-size:16px}
+.api-status.visible{display:flex}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-slide{padding:40px 32px}
+  .hero-text h1{font-size:36px}
+  .hero-img{display:none}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .top-bar{display:none}
+  header{padding:0 16px}
+  .search-box{display:none}
+  .section{padding:32px 16px}
+  .hero-slide{padding:32px 16px;min-height:auto}
+  .hero-text h1{font-size:28px}
+  .hero-stats{gap:16px;flex-wrap:wrap}
+  .p-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .p-img{height:160px}
+  .p-body{padding:10px}
+  .p-name{font-size:11px}
+  .p-price .now{font-size:16px}
+  .p-add{padding:8px;font-size:11px}
+  .footer-grid{grid-template-columns:1fr}
+  .newsletter{padding:28px 16px;margin:16px}
+  .nl-form{flex-direction:column}
+  .flash-bar{flex-wrap:wrap;font-size:12px}
+  .deals-grid{grid-template-columns:1fr}
+  .advice-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+  .cart-sidebar{width:100%;right:-100%}
+  .cat-nav{padding:0 16px}
+  .trust-bar{gap:20px;padding:16px}
+  .hero-actions{flex-wrap:wrap}
+}
+@media(max-width:480px){
+  .p-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .p-img{height:140px}
+  .p-body{padding:8px}
+  .p-brand{font-size:9px}
+  .p-name{font-size:10px}
+  .p-flavor{display:none}
+  .p-price .now{font-size:14px}
+  .p-price .was{font-size:10px}
+  .p-price .off{font-size:9px}
+  .p-add{padding:7px;font-size:10px}
+  .p-weights{display:none}
+  .cat-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .cat-card{padding:12px 8px}
+  .cat-icon{width:40px;height:40px;font-size:18px;border-radius:10px}
+  .cat-card h3{font-size:10px}
+}
+</style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("8D-AlrqDSD0y750OC");
+})();
+</script>
+
+<script>
+function sendEmail() {
+  let email = document.getElementById("email").value;
+
+  emailjs.send("service_smnp26c", "template_zb53s8u", {
+    email: email,
+    name: "User"
+  })
+  .then(function(response) {
+    alert("✅ Email sent successfully!");
+  }, function(error) {
+    alert("❌ Failed: " + error);
+  });
+}
+</script>
+
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-links">
+    <a href="#"><i class="fas fa-phone"></i> +91 98765-43210</a>
+    <a href="#"><i class="fas fa-envelope"></i> support@proteinkart.in</a>
+  </div>
+  <div class="top-links">
+    <a href="#">Track Order</a>
+    <a href="#">Bulk Orders</a>
+    <a href="#">Download App</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+  <img src="./images/logo1.png" alt="ProteinKart Logo">
+  <h1>Protein<span>Kart</span></h1>
+</div>
+  <div class="search-box">
+    <i class="fas fa-search"></i>
+    <input type="text" id="searchInput" placeholder="Search proteins, brands, supplements..." oninput="handleSearch()">
+  </div>
+  <div class="header-actions">
+    <div class="header-icon"><i class="far fa-heart"></i><span class="count">0</span></div>
+    <div class="header-icon" onclick="toggleCart()"><i class="fas fa-shopping-bag"></i><span class="count" id="cartCount">0</span></div>
+    <div id="navUser"></div>
+  </div>
+</header>
+
+<!-- CAT NAV -->
+<div class="cat-nav" id="catNav">
+  <a class="active" onclick="filterCat('all',this)">All</a>
+  <a onclick="filterCat('whey',this)">Whey Protein</a>
+  <a onclick="filterCat('isolate',this)">Isolate</a>
+  <a onclick="filterCat('mass',this)">Mass Gainer</a>
+  <a onclick="filterCat('peanut',this)">Peanut Butter</a>
+  <a onclick="filterCat('casein',this)">Casein</a>
+  <a onclick="filterCat('bcaa',this)">BCAA</a>
+  <a onclick="filterCat('preworkout',this)">Pre-Workout</a>
+  <a onclick="filterCat('creatine',this)">Creatine</a>
+  <a onclick="filterCat('multivitamin',this)">Multivitamins</a>
+  <a onclick="filterCat('vegan',this)">Vegan</a>
+  <a onclick="filterCat('bars',this)">Protein Bars</a>
+  <a onclick="filterCat('omega',this)">Fish Oil</a>
+</div>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-slider" id="heroSlider">
+    <div class="hero-slide">
+      <div class="hero-text">
+        <div class="hero-tag"><span class="dot"></span> India's Trusted Supplement Store</div>
+        <h1>Fuel Your <em>Beast Mode</em> With Premium Protein</h1>
+        <p>100% Authentic supplements from top global brands. From Whey Protein starting ₹500 to Premium Isolates.</p>
+        <div class="hero-actions">
+          <button class="btn-fill" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})"><i class="fas fa-bolt"></i> Shop Now</button>
+          <button class="btn-outline" onclick="document.getElementById('advice').scrollIntoView({behavior:'smooth'})"><i class="fas fa-book-open"></i> Fitness Guide</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><h3>5L+</h3><p>Happy Customers</p></div>
+          <div class="hero-stat"><h3>500+</h3><p>Products</p></div>
+          <div class="hero-stat"><h3>50+</h3><p>Brands</p></div>
+          <div class="hero-stat"><h3>4.8★</h3><p>Rating</p></div>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="./images/front.jpeg" alt="protein">
+      </div>
+    </div>
+    <div class="hero-slide">
+      <div class="hero-text">
+        <div class="hero-tag"><span class="dot"></span> New Arrivals</div>
+        <h1>Premium <em>Peanut Butter</em> Collection</h1>
+        <p>Crunchy, Smooth, Chocolate - All natural peanut butter starting from just ₹199. High protein, zero trans fat!</p>
+        <div class="hero-actions">
+          <button class="btn-fill" onclick="filterCat('peanut')"><i class="fas fa-jar-wheat"></i> Explore PB</button>
+          <button class="btn-outline"><i class="fas fa-percent"></i> Combo Offers</button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <div class="hero-text">
+        <div class="hero-tag"><span class="dot"></span> Mass Gainer Special</div>
+        <h1>Gain <em>Serious Mass</em> Like Never Before</h1>
+        <p>Top mass gainers from Optimum Nutrition, Dymatize, MuscleBlaze & more. 1000+ calories per serving!</p>
+        <div class="hero-actions">
+          <button class="btn-fill" onclick="filterCat('mass')"><i class="fas fa-dumbbell"></i> Mass Gainers</button>
+          <button class="btn-outline" onclick="document.getElementById('meals').scrollIntoView({behavior:'smooth'})"><i class="fas fa-utensils"></i> Meal Plans</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="hero-dot active" onclick="goSlide(0)"></button>
+    <button class="hero-dot" onclick="goSlide(1)"></button>
+    <button class="hero-dot" onclick="goSlide(2)"></button>
+  </div>
+</section>
+
+<!-- FLASH -->
+<div class="flash-bar">
+  <strong><i class="fas fa-bolt"></i> FLASH SALE</strong>
+  <span>Ends in:</span>
+  <div class="flash-timer">
+    <div class="box"><div class="num" id="fh">08</div><div class="lbl">Hrs</div></div>
+    <div class="box"><div class="num" id="fm">45</div><div class="lbl">Min</div></div>
+    <div class="box"><div class="num" id="fs">30</div><div class="lbl">Sec</div></div>
+  </div>
+  <button class="btn-fill" style="padding:8px 20px;font-size:12px;background:var(--primary)" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">GRAB DEALS →</button>
+</div>
+
+<!-- TRUST -->
+<div class="trust-bar">
+  <div class="trust-item"><div class="icon"><i class="fas fa-shield-halved"></i></div><div><h4>100% Authentic</h4><p>Directly from brands</p></div></div>
+  <div class="trust-item"><div class="icon"><i class="fas fa-truck-fast"></i></div><div><h4>Free Delivery</h4><p>Orders above ₹999</p></div></div>
+  <div class="trust-item"><div class="icon"><i class="fas fa-rotate-left"></i></div><div><h4>Easy Returns</h4><p>7 day return policy</p></div></div>
+  <div class="trust-item"><div class="icon"><i class="fas fa-headset"></i></div><div><h4>24/7 Support</h4><p>Expert guidance</p></div></div>
+  <div class="trust-item"><div class="icon"><i class="fas fa-money-bill-wave"></i></div><div><h4>COD Available</h4><p>Pay on delivery</p></div></div>
+</div>
+
+<!-- BRANDS -->
+<section class="section">
+  <div class="section-head">
+    <div><h2>Shop by <em>Top Brands</em></h2><p>India's favorite supplement brands</p></div>
+    <a href="#" class="more">View All <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="brands-row" id="brandsRow"></div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section section-alt">
+  <div class="section-head"><div><h2>Shop by <em>Category</em></h2><p>Find the perfect supplement</p></div></div>
+  <div class="cat-grid" id="catGrid"></div>
+</section>
+
+<!-- PRODUCTS (API + LOCAL) -->
+<section class="section" id="products">
+  <div class="section-head">
+    <div><h2> All <em>Products</em></h2><p id="productCount">Loading products...</p></div>
+    <a href="#" class="more">View All <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="api-status" id="apiStatus"><i class="fas fa-circle-info"></i><span id="apiMsg"></span></div>
+  <div class="filters" id="filterTabs"></div>
+  <div class="p-grid" id="pGrid">
+    <div class="loading-section"><div class="spinner"></div>Loading products...</div>
+  </div>
+</section>
+
+<!-- PEANUT BUTTER -->
+<section class="section section-alt" id="peanut-section">
+  <div class="section-head"><div><h2> Peanut Butter <em>Collection</em></h2><p>Starting ₹199</p></div></div>
+  <div class="p-grid" id="pbGrid"></div>
+</section>
+
+<!-- MASS GAINERS -->
+<section class="section" id="mass-section">
+  <div class="section-head"><div><h2> Mass Gainer <em>Powerhouse</em></h2><p>Pack on serious mass</p></div></div>
+  <div class="p-grid" id="massGrid"></div>
+</section>
+
+<!-- MEGA DEALS -->
+<section class="section section-alt">
+  <div class="section-head"><div><h2> Mega <em>Combo Deals</em></h2><p>Save more with combos</p></div></div>
+  <div class="deals-grid" id="dealsGrid"></div>
+</section>
+
+<!-- MEAL PLANS -->
+<section class="section" id="meals">
+  <div class="section-head"><div><h2> Meal Plans for <em>Mass Gaining</em></h2><p>Expert-curated meal plans</p></div></div>
+  <div class="meals-grid" id="mealsGrid"></div>
+</section>
+
+<!-- ADVICE -->
+<section class="section section-alt" id="advice">
+  <div class="section-head"><div><h2> Expert <em>Advice</em></h2><p>Nutrition & supplement guides</p></div><a href="#" class="more">All Articles <i class="fas fa-arrow-right"></i></a></div>
+  <div class="advice-grid" id="adviceGrid"></div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+  <div class="section-head"><div><h2> Customer <em>Reviews</em></h2><p>5 Lakh+ happy customers</p></div></div>
+  <div class="test-grid" id="testGrid"></div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <h2>Get <em>20% OFF</em> Your First Order</h2>
+  <p>Subscribe for exclusive deals & fitness tips</p>
+
+  <div class="nl-form">
+    <input type="email" id="email" placeholder="Enter your email">
+    <button onclick="sendEmail()">Subscribe</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h2>Protein<span>Kart</span></h2>
+      <p>India's #1 online supplement store. 100% authentic products from top global brands. Trusted by 5 Lakh+ fitness enthusiasts.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-telegram"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h3>Categories</h3><a href="#">Whey Protein</a><a href="#">Isolate</a><a href="#">Mass Gainer</a><a href="#">Peanut Butter</a><a href="#">BCAA</a><a href="#">Pre-Workout</a><a href="#">Creatine</a><a href="#">Multivitamins</a></div>
+    <div class="footer-col"><h3>Top Brands</h3><a href="#">Optimum Nutrition</a><a href="#">MuscleBlaze</a><a href="#">MyProtein</a><a href="#">Dymatize</a><a href="#">MuscleTech</a><a href="#">GNC</a><a href="#">Labrada</a><a href="#">Isopure</a></div>
+    <div class="footer-col"><h3>Help</h3><a href="#">Track Order</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">FAQ</a><a href="#">Contact</a><a href="#">Bulk Orders</a></div>
+    <div class="footer-col"><h3>Company</h3><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 ProteinKart. All rights reserved. Made with ❤️ in India</p>
+    <div class="pay-icons"><i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i><i class="fab fa-google-pay"></i><i class="fab fa-cc-paypal"></i></div>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head"><h2>🛒 Cart (<span id="cartItemCount">0</span>)</h2><button class="cart-x" onclick="toggleCart()">✕</button></div>
+  <div class="cart-body" id="cartBody"><div class="cart-empty"><i class="fas fa-shopping-bag" style="font-size:40px;opacity:.15;display:block;margin-bottom:12px"></i>Your cart is empty</div></div>
+  <div class="cart-foot">
+    <div class="cart-row"><span>Subtotal</span><span id="cartSub">₹0</span></div>
+    <div class="cart-row"><span>Delivery</span><span style="color:var(--green)">FREE</span></div>
+    <div class="cart-row total"><span>Total</span><span id="cartTot">₹0</span></div>
+    <button class="checkout-btn" onclick="openCheckout()"><i class="fas fa-lock"></i> Checkout</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="coOverlay">
+  <div class="modal-box">
+    <button class="modal-x" onclick="closeModal('coOverlay')">✕</button>
+    <div class="modal-body" id="coForm">
+      <div class="modal-title">Checkout</div>
+      <div class="fg"><label>Full Name</label><input id="coName" placeholder="Your name"></div>
+      <div class="fg"><label>Email</label><input id="coEmail" type="email" placeholder="you@email.com"></div>
+      <div class="os-box">
+        <div class="os-head">Order Summary</div>
+        <div id="osItems"></div>
+        <div class="os-total"><span>Total</span><span id="osTot"></span></div>
+      </div>
+      <div class="error-msg" id="coErr"></div>
+      <button class="place-btn" id="placeBtn" onclick="placeOrder()">Place Order</button>
+    </div>
+    <div id="coSuccess" style="display:none" class="success-box">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Order Placed!</div>
+      <div class="success-sub" id="successMsg"></div>
+      <button class="success-close" onclick="closeModal('coOverlay');location.reload()">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastText">Added!</span></div>
+
+<!-- BACK TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+<div id="authModal" class="auth-modal">
+  <div class="auth-box" id="authBox">
+
+    <h2>Join <span>ProteinKart</span></h2>
+
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="email" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button onclick="register()">Register</button>
+
+    <p>Already have account? 
+      <span onclick="showLogin()">Login</span>
+    </p>
+
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+
+  <!-- tumhara pura HTML upar -->
+
+  <script>
+// PAGE LOAD CHECK
+window.onload = function(){
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // 🔥 duplicate emails remove (latest keep)
+  let unique = {};
+  users.forEach(u => {
+    unique[u.email] = u;
+  });
+
+  let cleanUsers = Object.values(unique);
+  localStorage.setItem("users", JSON.stringify(cleanUsers));
+
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  if(user && user.email){
+    document.getElementById("authModal").style.display = "none";
+  } else {
+    document.getElementById("authModal").style.display = "flex";
+  }
+
+  updateNavbar();
+}
+
+// REGISTER
+function register(){
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value;
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // 🔥 same email mila to UPDATE karo
+  let index = users.findIndex(u => u.email === email);
+
+  let newUser = { name, email, password };
+
+  if(index !== -1){
+    users[index] = newUser; // update
+  } else {
+    users.push(newUser); // new add
+  }
+
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Registered Successfully ✅");
+
+  showLogin();
+}
+
+// SHOW LOGIN
+function showLogin(){
+  document.getElementById("authBox").innerHTML = `
+    <h2>Welcome Back</h2>
+
+    <input type="email" id="loginEmail" placeholder="Enter Email">
+    <input type="password" id="loginPassword" placeholder="Enter Password">
+
+    <button onclick="login()">Login</button>
+
+    <p>Don't have account? 
+      <span onclick="showRegister()">Register</span>
+    </p>
+  `;
+}
+
+// SHOW REGISTER
+function showRegister(){
+  document.getElementById("authBox").innerHTML = `
+    <h2>Join <span>ProteinKart</span></h2>
+
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="email" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button onclick="register()">Register</button>
+
+    <p>Already have account? 
+      <span onclick="showLogin()">Login</span>
+    </p>
+  `;
+}
+
+// LOGIN
+
+function login(){
+  let email = document.getElementById("loginEmail").value.trim();
+  let password = document.getElementById("loginPassword").value;
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // 🔥 latest user find (reverse search)
+  let foundUser = null;
+
+  for(let i = users.length - 1; i >= 0; i--){
+    if(users[i].email === email && users[i].password === password){
+      foundUser = users[i];
+      break;
+    }
+  }
+
+  if(foundUser){
+    localStorage.setItem("user", JSON.stringify(foundUser));
+
+    document.getElementById("authModal").style.display = "none";
+    updateNavbar();
+
+    alert("Login Successful ✅");
+  } else {
+    alert("Invalid credentials ❌");
+  }
+}
+
+
+// NAVBAR PROFILE
+function showProfile(){
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  let nav = document.getElementById("navUser");
+
+  if(!nav) return; // 💥 ERROR FIX
+
+  nav.innerHTML = `
+    <span onclick="goProfile()" style="cursor:pointer;">
+      Hi, ${user.name}
+    </span>
+    <button onclick="logout()">Logout</button>
+  `;
+}
+
+// PROFILE PAGE OPEN
+function goProfile(){
+  window.location.href = "profile.html";
+}
+
+// LOGOUT
+function logout(){
+  localStorage.removeItem("user");
+
+  document.getElementById("authModal").style.display = "flex";
+  updateNavbar();
+}
+
+
+(function(){
+  emailjs.init("8D-AlrqDSD0y750OC");
+})();
+
+function sendEmail() {
+  const btn = document.querySelector(".nl-form button");
+  const email = document.getElementById("email").value;
+
+  if (!email || !email.includes("@")) {
+    toast("Enter a valid email ❌");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerText = "Sending...";
+
+  emailjs.send("service_smnp26c", "template_zb53s8u", {
+    email: email,
+    name: "User"
+  })
+  .then(() => {
+    toast("Subscribed successfully 🎉");
+    document.getElementById("email").value = "";
+  })
+  .catch(() => {
+    toast("Failed ❌");
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.innerText = "Subscribe";
+  });
+}
+
+function updateNavbar(){
+  let user = JSON.parse(localStorage.getItem("user"));
+  let nav = document.getElementById("navUser");
+
+  if(!nav) return;
+
+  if(user){
+    nav.innerHTML = `
+      <span onclick="goProfile()" style="cursor:pointer; margin-right:10px;">
+        👤 ${user.name || "User"}
+      </span>
+      <button onclick="logout()" style="
+        background:#111;
+        color:#fff;
+        border:none;
+        padding:8px 14px;
+        border-radius:6px;
+        cursor:pointer;
+      ">
+        Logout
+      </button>
+    `;
+  } else {
+    nav.innerHTML = `
+      <button onclick="openLogin()" style="
+        background:#111;
+        color:#fff;
+        border:none;
+        padding:8px 14px;
+        border-radius:6px;
+        cursor:pointer;
+      ">
+        Login
+      </button>
+    `;
+  }
+}
+function openLogin(){
+  document.getElementById("authModal").style.display = "flex";
+}
+</script>
+<script>
+// ========== CONFIG ==========
+const API = "https://proteinkart-backend-700904847306.europe-west1.run.app";
+const productImages = {};
+
+
+function findImage(name, brand) {
+  if (typeof productImages === "undefined") return null;
+
+  const n = name.toLowerCase();
+  const b = brand ? brand.toLowerCase() : '';
+
+  for (const [key, url] of Object.entries(productImages)) {
+    if (n.includes(key)) return url;
+  }
+
+  for (const [key, url] of Object.entries(productImages)) {
+    if (key.includes(b.split(' ')[0]) && n.includes(key.split(' ').pop())) return url;
+  }
+
+  return null;
+}
+
+// ========== LOCAL PRODUCT DATA ==========
+const localProducts = [
+  {id:1,brand:"Optimum Nutrition",name:"Gold Standard 100% Whey Protein",flavor:"Double Rich Chocolate",weight:["1 lb","2 lb","5 lb"],price:2499,mrp:4599,rating:4.8,reviews:15420,category:"whey",badges:["best","auth"],img:"./images/on.webp",in_stock:true},
+  {id:2,brand:"Optimum Nutrition",name:"Gold Standard Whey - Vanilla Ice Cream",flavor:"Vanilla Ice Cream",weight:["1 lb","2 lb","5 lb"],price:2399,mrp:4499,rating:4.7,reviews:12300,category:"whey",badges:["best"],img:"./images/1118945_7.webp",in_stock:true},
+  {id:3,brand:"MuscleBlaze",name:"Biozyme Performance Whey",flavor:"Rich Chocolate",weight:["1 kg","2 kg","4 kg"],price:1999,mrp:3999,rating:4.6,reviews:23500,category:"whey",badges:["best","sale"],img:"./images/muscleblaze-biozyme-performance-whey-1kg-rich-chocolate.webp",in_stock:true},
+  {id:4,brand:"MuscleBlaze",name:"Raw Whey Protein Concentrate",flavor:"Unflavoured",weight:["1 kg","2 kg"],price:999,mrp:1999,rating:4.4,reviews:34000,category:"whey",badges:["sale"],img:"./images/rawwheyL.jpg",in_stock:true},
+  {id:5,brand:"MyProtein",name:"Impact Whey Protein",flavor:"Chocolate Smooth",weight:["1 kg","2.5 kg","5 kg"],price:1599,mrp:3199,rating:4.5,reviews:8900,category:"whey",badges:["sale"],img:"./images/impactwhey.jpeg",in_stock:true},
+  {id:6,brand:"Dymatize",name:"ISO100 Hydrolyzed Protein",flavor:"Gourmet Chocolate",weight:["1.6 lb","3 lb","5 lb"],price:3799,mrp:6999,rating:4.9,reviews:7600,category:"isolate",badges:["best","auth"],img:"./images/iso.jpeg",in_stock:true},
+  {id:7,brand:"Isopure",name:"Zero Carb Protein Isolate",flavor:"Creamy Vanilla",weight:["1 lb","3 lb","7.5 lb"],price:3499,mrp:6499,rating:4.8,reviews:11200,category:"isolate",badges:["best"],img:"./images/creamy.jpg",in_stock:true},
+  {id:8,brand:"MuscleTech",name:"NitroTech 100% Whey Gold",flavor:"Double Rich Chocolate",weight:["1 lb","2 lb","5.5 lb"],price:2199,mrp:4199,rating:4.6,reviews:9800,category:"whey",badges:["best"],img:"./images/cho.webp",in_stock:true},
+  {id:9,brand:"Optimum Nutrition",name:"Serious Mass Weight Gainer",flavor:"Chocolate",weight:["6 lb","12 lb"],price:3499,mrp:6499,rating:4.7,reviews:21300,category:"mass",badges:["best"],img:"./images/shop.webp",in_stock:true},
+  {id:10,brand:"MuscleBlaze",name:"Super Gainer XXL",flavor:"Chocolate",weight:["3 kg","5 kg"],price:1299,mrp:2599,rating:4.3,reviews:28400,category:"mass",badges:["sale"],img:"./images/download.jpeg",in_stock:true},
+  {id:11,brand:"MyFitness",name:"Chocolate Peanut Butter Crunchy",flavor:"Chocolate Crunchy",weight:["510g","1.25 kg"],price:399,mrp:599,rating:4.5,reviews:45600,category:"peanut",badges:["best"],img:"./images/butter.jpeg",in_stock:true},
+  {id:12,brand:"Pintola",name:"All Natural Peanut Butter Crunchy",flavor:"Crunchy",weight:["350g","1 kg","2.5 kg"],price:299,mrp:499,rating:4.4,reviews:31200,category:"peanut",badges:["sale"],img:"./images/pintola.webp",in_stock:true},
+  {id:13,brand:"Optimum Nutrition",name:"Gold Standard 100% Casein",flavor:"Chocolate Supreme",weight:["2 lb","4 lb"],price:3299,mrp:5999,rating:4.7,reviews:5400,category:"casein",badges:["best","auth"],img:"./images/supreme.webp",in_stock:true},
+  {id:14,brand:"Xtend",name:"Original BCAA Powder",flavor:"Blue Raspberry",weight:["30 srv","90 srv"],price:1799,mrp:3299,rating:4.7,reviews:8900,category:"bcaa",badges:["best"],img:"./images/trend.webp",in_stock:true},
+  {id:15,brand:"Cellucor",name:"C4 Original Pre-Workout",flavor:"Cherry Limeade",weight:["30 srv","60 srv"],price:2199,mrp:3999,rating:4.7,reviews:9800,category:"preworkout",badges:["best"],img:"./images/cherry.webp",in_stock:true},
+  {id:16,brand:"Optimum Nutrition",name:"Micronized Creatine Monohydrate",flavor:"Unflavoured",weight:["300g","600g"],price:999,mrp:1899,rating:4.7,reviews:18900,category:"creatine",badges:["best"],img:"./images/yeh.webp",in_stock:true},
+  {id:17,brand:"AS-IT-IS",name:"Creatine Monohydrate 99.9% Pure",flavor:"Unflavoured",weight:["250g","500g"],price:499,mrp:899,rating:4.3,reviews:25600,category:"creatine",badges:["sale"],img:"./images/asitis.webp",in_stock:true},
+  {id:18,brand:"Optimum Nutrition",name:"Opti-Men Multivitamin",flavor:"Tablets",weight:["90 tabs","150 tabs"],price:1199,mrp:2299,rating:4.6,reviews:9800,category:"multivitamin",badges:["best"],img:"./images/tablet.webp",in_stock:true},
+  {id:19,brand:"MyProtein",name:"Vegan Protein Blend",flavor:"Chocolate",weight:["1 kg","2.5 kg"],price:1999,mrp:3799,rating:4.4,reviews:4500,category:"vegan",badges:[],img:"./images/vegan.webp",in_stock:true},
+  {id:20,brand:"Yoga Bar",name:"20g Protein Bar",flavor:"Almond Fudge",weight:["Pack of 6","Pack of 12"],price:599,mrp:900,rating:4.4,reviews:15600,category:"bars",badges:["best"],img:"./images/yogabar.jpeg",in_stock:true},
+  {id:21,brand:"Optimum Nutrition",name:"Fish Oil Softgels",flavor:"Softgels",weight:["100 caps","200 caps"],price:799,mrp:1499,rating:4.5,reviews:7800,category:"omega",badges:["best"],img:"./images/fish.jpeg",in_stock:true},
+  {id:22,brand:"Pintola",name:"HIGH Protein Peanut Butter",flavor:"Dark Chocolate",weight:["510g","1 kg"],price:449,mrp:699,rating:4.5,reviews:19800,category:"peanut",badges:["new"],img:"./images/darkchoco.webp",in_stock:true},
+  {id:23,brand:"The Whole Truth",name:"SUPERSEED Peanut Butter",flavor:"Crunchy with Seeds",weight:["325g","925g"],price:499,mrp:749,rating:4.7,reviews:8700,category:"peanut",badges:["new"],img:"./images/peanut.webp",in_stock:true},
+  {id:24,brand:"Dymatize",name:"Super Mass Gainer",flavor:"Rich Chocolate",weight:["6 lb","12 lb"],price:3299,mrp:5999,rating:4.6,reviews:8700,category:"mass",badges:["best"],img:"./images/mass.jpeg",in_stock:true},
+  {id:25,brand:"Labrada",name:"Muscle Mass Gainer",flavor:"Chocolate",weight:["3 kg","5 kg"],price:2499,mrp:4499,rating:4.4,reviews:12100,category:"mass",badges:["sale"],img:"./images/mg.webp",in_stock:true},
+  {id:26,brand:"MuscleBlaze",name:"Mass Gainer PRO with Creapure",flavor:"Chocolate",weight:["3 kg","5 kg"],price:1999,mrp:3999,rating:4.5,reviews:13400,category:"mass",badges:["best"],img:"./images/mb.jpeg",in_stock:true},
+  {id:27,brand:"Nutrabay",name:"Whey Concentrate Unflavoured",flavor:"Unflavoured",weight:["500g","1 kg"],price:500,mrp:999,rating:4.1,reviews:8900,category:"whey",badges:["sale"],img:"./images/gold.webp",in_stock:true},
+  {id:28,brand:"AS-IT-IS",name:"Raw Whey Protein",flavor:"Unflavoured",weight:["500g","1 kg","2 kg"],price:549,mrp:1099,rating:4.2,reviews:21300,category:"whey",badges:["sale"],img:"./images/whey.webp",in_stock:true},
+  {id:29,brand:"BSN",name:"Syntha-6 Ultra Premium Protein",flavor:"Chocolate Milkshake",weight:["2.27 lb","5 lb"],price:2999,mrp:5499,rating:4.5,reviews:4300,category:"whey",badges:[],img:"./images/shake.webp",in_stock:true},
+  {id:30,brand:"MuscleBlaze",name:"BCAA 6000 Amino Acid",flavor:"Watermelon",weight:["400g"],price:999,mrp:1999,rating:4.4,reviews:11200,category:"bcaa",badges:["sale"],img:"./images/water.webp",in_stock:true},
+  {id:31,brand:"MuscleBlaze",name:"Pre Workout Ripped",flavor:"Fruit Splash",weight:["250g"],price:899,mrp:1799,rating:4.3,reviews:14500,category:"preworkout",badges:["sale"],img:"./images/fruit.webp",in_stock:true},
+  {id:32,brand:"MuscleBlaze",name:"Creatine Monohydrate CreAMP",flavor:"Unflavoured",weight:["250g","400g"],price:599,mrp:1199,rating:4.4,reviews:22300,category:"creatine",badges:["sale"],img:"./images/unfl.webp",in_stock:true},
+  {id:33,brand:"HealthKart",name:"HK Vitals Multivitamin",flavor:"Tablets",weight:["60 tabs","120 tabs"],price:499,mrp:999,rating:4.2,reviews:32100,category:"multivitamin",badges:["sale"],img:"./images/health.webp",in_stock:true},
+  {id:34,brand:"MuscleBlaze",name:"Omega 3 Fish Oil 1000mg",flavor:"Softgels",weight:["60 caps","180 caps"],price:499,mrp:999,rating:4.3,reviews:18900,category:"omega",badges:["sale"],img:"./images/oil.webp",in_stock:true},
+  {id:35,brand:"RiteBite",name:"Max Protein Daily Bar",flavor:"Choco Classic",weight:["Pack of 6","Pack of 12"],price:499,mrp:780,rating:4.3,reviews:21300,category:"bars",badges:["best"],img:"./images/max.jpeg",in_stock:true},
+  {id:36,brand:"Sundrop",name:"Peanut Butter Crunchy",flavor:"Crunchy",weight:["462g","924g"],price:199,mrp:350,rating:4.2,reviews:25400,category:"peanut",badges:["sale"],img:"./images/sun.jpeg",in_stock:true},
+  {id:37,brand:"MuscleBlaze",name:"High Protein Natural Peanut Butter",flavor:"Crunchy",weight:["750g","1 kg"],price:449,mrp:799,rating:4.3,reviews:22100,category:"peanut",badges:["sale"],img:"./images/crunch.webp",in_stock:true},
+  {id:38,brand:"Oziva",name:"Organic Plant Protein",flavor:"Chocolate Muesli",weight:["500g","1 kg"],price:1199,mrp:2399,rating:4.4,reviews:8900,category:"vegan",badges:["new"],img:"./images/plant.webp",in_stock:true},
+  {id:39,brand:"The Whole Truth",name:"Protein Bars (No Added Sugar)",flavor:"Peanut Butter",weight:["Pack of 6","Pack of 12"],price:799,mrp:1200,rating:4.6,reviews:12300,category:"bars",badges:["new"],img:"./images/bars.webp",in_stock:true},
+  {id:40,brand:"GNC",name:"Pro Performance 100% Whey",flavor:"Chocolate Supreme",weight:["1 kg","2 kg"],price:2299,mrp:3999,rating:4.4,reviews:7800,category:"whey",badges:["auth"],img:"./images/d.webp",in_stock:true},
+];
+
+// ========== STATIC DATA ==========
+const brands=[{n:"Optimum Nutrition",img:"./images/on.png"},{n:"MuscleBlaze",img:"./images/mbb.png"},{n:"MyProtein",img:"./images/mp.png"},{n:"Dymatize",img:"./images/dy.png"},{n:"MuscleTech",img:"./images/m.png"},{n:"BSN",img:"./images/bsn.png"},{n:"GNC",img:"./images/gnc.png"},{n:"Labrada",img:"./images/ln.jpeg"},{n:"Isopure",img:"./images/iso.png"},{n:"Ultimate Nutrition",img:"./images/un.png"},{n:"HealthKart",img:"./images/hk.png"}];
+const cats = [
+  {n:"Whey Protein", img:"./images/pro.jpeg"},
+  {n:"Isolate", img:"./images/isolate.jpeg"},
+  {n:"Mass Gainer", img:"./images/massgainer.jpeg"},
+  {n:"Peanut Butter", img:"./images/pb.jpeg"},
+  {n:"Casein", img:"./images/cas.jpeg"},
+  {n:"BCAA", img:"./images/bcaa.jpeg"},
+  {n:"Pre-Workout", img:"./images/pre.jpeg"},
+  {n:"Creatine", img:"./images/cc.jpeg"},
+  {n:"Multivitamins", img:"./images/vita.jpeg"},
+  {n:"Vegan", img:"./images/vegann.jpeg"},
+  {n:"Protein Bars", img:"./images/barss.jpeg"},
+  {n:"Fish Oil", img:"./images/fishoil.jpeg"}
+];
+const meals = [
+  {t:"Mass Gain Breakfast", p:55,c:80,cal:750,f:25,items:[
+    "6 Whole Eggs Scrambled","2 Slices Whole Wheat Toast","1 Banana + 1 scoop Whey",
+    "1 Glass Full Fat Milk","1 tbsp Peanut Butter","10-12 Almonds"
+  ]},
+
+  {t:"Pre-Workout Meal", p:35,c:60,cal:500,f:12,items:[
+    "1 Cup Oats with Milk","1 Scoop Whey Protein","1 Banana",
+    "1 tbsp Honey","Pre-Workout Supplement","BCAAs (5g)"
+  ]},
+
+  {t:"Post-Workout Shake", p:50,c:70,cal:600,f:10,items:[
+    "2 Scoops Whey Isolate","1 Banana","300ml Milk",
+    "2 tbsp Oats","1 tbsp Peanut Butter","5g Creatine"
+  ]},
+
+  {t:"Mass Gain Lunch", p:60,c:100,cal:900,f:30,items:[
+    "250g Chicken Breast","1.5 Cup Brown Rice","Mixed Vegetables",
+    "1 Cup Dal","2 Chapati","Curd / Raita"
+  ]},
+
+  {t:"Night Recovery", p:40,c:30,cal:400,f:18,items:[
+    "1 Scoop Casein Protein","200ml Full Fat Milk","1 Cup Paneer Bhurji",
+    "1 tbsp Almond Butter","Mixed Nuts","ZMA (Optional)"
+  ]}
+];
+const articles = [
+{
+  t:"How to Choose the Right Protein",
+  d:"Complete guide on Whey vs Isolate vs Casein vs Plant proteins.",
+  advice:"Choose protein based on your goal — isolate for weight loss, whey for muscle gain.",
+  img:"./images/gui.jpeg",
+  tag:"Guide", time:"8 min", date:"Dec 2024"
+},
+
+{
+  t:"Mass Gainer vs Whey Protein",
+  d:"Differences, benefits, and usage explained.",
+  advice:"If you struggle to gain weight, use a mass gainer. Otherwise, whey is enough.",
+  img:"./images/wheymass.jpeg",
+  tag:"Nutrition", time:"6 min", date:"Dec 2024"
+},
+
+{
+  t:"3000 Calorie Indian Diet Plan",
+  d:"Veg + non-veg meal plan with macros.",
+  advice:"Include protein in every meal and track your daily calorie intake.",
+  img:"./images/diet.jpeg",
+  tag:"Diet Plan", time:"12 min", date:"Nov 2024"
+},
+
+{
+  t:"Homemade Mass Gainer Recipes",
+  d:"High calorie shakes at home.",
+  advice:"Milk, oats, and peanut butter make a powerful natural mass gainer.",
+  img:"./images/rec.jpeg",
+  tag:"Recipes", time:"5 min", date:"Nov 2024"
+},
+
+{
+  t:"Peanut Butter for Bodybuilding",
+  d:"Benefits and usage guide.",
+  advice:"1–2 tablespoons daily is enough. Avoid overeating due to high calories.",
+  img:"./images/but.jpeg",
+  tag:"Nutrition", time:"7 min", date:"Nov 2024"
+},
+
+{
+  t:"Top 10 Supplements for Beginners",
+  d:"Best beginner supplements.",
+  advice:"Start with whey protein and creatine. Avoid unnecessary supplements.",
+  img:"./images/sup.jpeg",
+  tag:"Supplements", time:"10 min", date:"Oct 2024"
+}
+];
+const reviews=[{n:"Rahul S.",t:"Best store! Got ON Gold Standard at cheapest price. 100% authentic with verification code. Super fast delivery!",r:5,a:"RS"},{n:"Priya P.",t:"Buying from ProteinKart for 2 years. Never a fake product. Pintola PB is amazing!",r:5,a:"PP"},{n:"Amit K.",t:"MuscleBlaze Mass Gainer helped me gain 8 kgs in 3 months. Great product and service!",r:5,a:"AK"},{n:"Sneha R.",t:"Great collection of plant proteins and PBs. Love MyFitness PB!",r:4,a:"SR"},{n:"Vikram S.",t:"Excellent customer service. Issue resolved in hours. Free delivery above ₹999 is great!",r:5,a:"VS"},{n:"Neha G.",t:"Meal plans section helped so much! Followed mass gaining diet and saw results in weeks!",r:5,a:"NG"}];
+const combos = [
+{
+  t:"ON Gold + Creatine Combo",
+  b:"Optimum Nutrition",
+  p:3299,
+  m:6498,
+  img:"./images/combo1.png"
+},
+{
+  t:"MB Whey + Peanut Butter",
+  b:"MuscleBlaze",
+  p:2199,
+  m:4798,
+  img:"./images/combo2.jpeg"
+},
+{
+  t:"Mass Gainer + BCAA Stack",
+  b:"MuscleTech",
+  p:4499,
+  m:8498,
+  img:"./images/combo3.png"
+},
+{
+  t:"Beginner Kit",
+  b:"Various",
+  p:1999,
+  m:3997,
+  img:"./images/combo4.png"
+}
+];
+// ========== STATE ==========
+let allProducts = [];
+let apiProducts = [];
+let cart = [];
+let currentFilter = 'all';
+let heroSlide = 0;
+
+// ========== INIT ==========
+async function init() {
+  renderBrands();
+  renderCats();
+  renderMeals();
+  renderAdvice();
+  renderTests();
+  renderDeals();
+  startCountdown();
+
+  // Load local products first for instant display
+  allProducts = [...localProducts];
+  renderAllGrids();
+
+  // Then try API
+  //await fetchAPI();
+}
+
+async function fetchAPI() {
+  try {
+    const res = await fetch(`${API}/api/products`);
+    if (res.ok) {
+      const data = await res.json();
+
+      allProducts = data.map(p => ({
+        id: p.id,
+        brand: p.brand || 'Unknown',
+        name: p.name || 'Product',
+        flavor: p.flavour || '',
+        weight: ['1 kg'],
+        price: p.price || 999,
+        mrp: Math.round((p.price || 999) * 1.5),
+        rating: p.rating || 4.0,
+        reviews: p.rating_count || 0,
+        category: 'whey',
+
+        // 🔥 FINAL IMAGE FIX
+        img: (p.image_url && p.image_url !== '')
+          ? p.image_url
+          : './images/default.webp',
+
+        in_stock: true
+      }));
+
+      renderAllGrids(); // ✅ ONLY ONE RENDER
+    }
+  } catch (e) {
+    console.log("API failed, using local");
+
+    allProducts = localProducts;
+    renderAllGrids();
+  }
+}
+function normalizeAPIProduct(p) {
+  return {
+    id: p.id,
+    brand: p.brand || 'Unknown',
+    name: p.name || 'Product',
+    flavor: p.flavour || p.flavor || '',
+    weight: p.weight_kg ? [`${p.weight_kg} kg`] : ['Standard'],
+    price: p.price || 999,
+    mrp: Math.round((p.price || 999) * 1.6),
+    rating: p.rating || 4.0,
+    reviews: p.rating_count || 0,
+    category: mapType(p.type),
+    badges: getBadges(p),
+    img: p.image_url && p.image_url !== '' 
+     ? p.image_url 
+     : './images/default.webp',
+    in_stock: p.in_stock !== false,
+    image_url: p.image_url || null,
+    veg: p.veg || false,
+    api: true
+  };
+}
+
+function mapType(t) {
+  if (!t) return 'whey';
+  const m = {whey:'whey',casein:'casein',plant:'vegan',mass:'mass',isolate:'isolate'};
+  return m[t] || 'whey';
+}
+function getBadges(p) {
+  const b = [];
+  if (p.rating >= 4.5) b.push('best');
+  if (p.certified) b.push('auth');
+  if (p.veg) b.push('veg');
+  return b;
+}
+function getEmoji(t) {
+  const m = {whey:'🥛',casein:'🌙',plant:'🌿',mass:'💪',isolate:'⚡'};
+  return m[t] || '🥛';
+}
+function showApiStatus(msg, isWarn) {
+  const el = document.getElementById('apiStatus');
+  el.classList.add('visible');
+  document.getElementById('apiMsg').textContent = msg;
+}
+
+// ========== RENDER ==========
+function renderAllGrids() {
+  filterAndRender();
+  renderProducts(allProducts.filter(p => p.category === 'peanut').slice(0, 8), 'pbGrid');
+  renderProducts(allProducts.filter(p => p.category === 'mass').slice(0, 8), 'massGrid');
+  renderFilterTabs();
+}
+
+function renderFilterTabs() {
+  const types = ['all','whey','isolate','mass','peanut','casein','bcaa','preworkout','creatine','vegan','bars','omega','multivitamin'];
+  const labels = {all:'All',whey:'Whey',isolate:'Isolate',mass:'Mass Gainer',peanut:'Peanut Butter',casein:'Casein',bcaa:'BCAA',preworkout:'Pre-Workout',creatine:'Creatine',vegan:'Vegan',bars:'Bars',omega:'Fish Oil',multivitamin:'Vitamins'};
+  document.getElementById('filterTabs').innerHTML = types.map(t =>
+    `<button class="ftab ${currentFilter===t?'active':''}" onclick="filterCat('${t}',this)">${labels[t]}</button>`
+  ).join('');
+}
+
+function filterCat(cat, el) {
+  currentFilter = cat;
+  document.querySelectorAll('.cat-nav a').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll('.ftab').forEach(a=>a.classList.remove('active'));
+  if(el) el.classList.add('active');
+  filterAndRender();
+  renderFilterTabs();
+  document.getElementById('products').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function filterAndRender() {
+  let filtered = currentFilter==='all' ? allProducts : allProducts.filter(p=>p.category===currentFilter);
+  const q = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+  if (q.length > 1) {
+    filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || (p.flavor||'').toLowerCase().includes(q));
+  }
+  document.getElementById('productCount').textContent = `${filtered.length} products found`;
+  renderProducts(filtered, 'pGrid');
+}
+
+function handleSearch() {
+  filterAndRender();
+}
+
+function renderProducts(products, containerId) {
+  const grid = document.getElementById(containerId);
+  if (!products.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray-400)">No products found</div>';
+    return;
+  }
+  grid.innerHTML = products.map(p => {
+    const disc = Math.round((1 - p.price/p.mrp)*100);
+    const imgUrl = p.img;
+    const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating%1>=0.5?'½':'');
+    const badgeMap = {sale:'p-badge-sale',best:'p-badge-best',new:'p-badge-new',auth:'p-badge-auth',veg:'p-badge-veg'};
+    const badgeLabel = {sale:'SALE',best:'BESTSELLER',new:'NEW',auth:'AUTHENTIC',veg:'VEG'};
+    return `<div class="p-card">
+      <div class="p-badges">${(p.badges||[]).map(b=>`<span class="p-badge ${badgeMap[b]||''}">${badgeLabel[b]||b}</span>`).join('')}${!p.in_stock?'<span class="p-badge p-badge-sale">OUT OF STOCK</span>':''}</div>
+      <button class="p-wish" onclick="this.classList.toggle('liked');event.stopPropagation()"><i class="far fa-heart"></i></button>
+      <div class="p-img">
+  <img src="${p.image_url && p.image_url !== '' ? p.image_url : (p.img || './images/default.webp')}" alt="${p.name}">
+</div>
+      <div class="p-body">
+        <div class="p-brand">${p.brand}</div>
+        <div class="p-name">${p.name}</div>
+        <div class="p-flavor">${p.flavor||''}</div>
+        <div class="p-rating"><span class="stars">${stars}</span><span class="val">${p.rating}</span><span class="cnt">(${(p.reviews||0).toLocaleString()})</span></div>
+        <div class="p-weights">${(p.weight||[]).map((w,i)=>`<button class="p-wt ${i===0?'active':''}">${w}</button>`).join('')}</div>
+        <div class="p-price"><span class="now">₹${p.price.toLocaleString()}</span><span class="was">₹${p.mrp.toLocaleString()}</span><span class="off">${disc}% OFF</span></div>
+        <button class="p-add" onclick="addToCart(${p.id})" ${!p.in_stock?'disabled':''}>${p.in_stock?'<i class=\"fas fa-plus\"></i> Add to Cart':'Out of Stock'}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderBrands() {
+  document.getElementById('brandsRow').innerHTML = brands.map(b=>
+    `<div class="brand-chip" onclick="document.getElementById('searchInput').value='${b.n}';handleSearch()">
+      
+      <div class="brand-logo">
+        <img src="${b.img}" alt="${b.n}" 
+             onerror="this.src='./images/default-logo.png'">
+      </div>
+
+      <div class="name">${b.n}</div>
+    </div>`
+  ).join('');
+}
+function renderCats() {
+  document.getElementById('catGrid').innerHTML = cats.map(c =>
+    `<div class="cat-card" onclick="filterCat('${c.k}')">
+      
+      <div class="cat-icon" style="background:${c.bg}">
+        <img src="${c.img}" alt="${c.n}"
+             onerror="this.src='./images/default-cat.png'">
+      </div>
+
+      <h3>${c.n}</h3>
+      <p>${c.c} Products</p>
+    </div>`
+  ).join('');
+}
+function renderMeals() {
+  document.getElementById('mealsGrid').innerHTML = meals.map(m =>
+    `<div class="meal-card">
+
+      <div class="meal-top">
+        <h3>${m.t}</h3>
+
+        <div class="meal-macros">
+          <div class="m"><div class="v">${m.p}g</div><div class="l">Protein</div></div>
+          <div class="m"><div class="v">${m.c}g</div><div class="l">Carbs</div></div>
+          <div class="m"><div class="v">${m.f}g</div><div class="l">Fat</div></div>
+          <div class="m"><div class="v">${m.cal}</div><div class="l">Cal</div></div>
+        </div>
+      </div>
+
+      <div class="meal-items">
+        ${m.items.map(i=>`<div class="mi"><i class="fas fa-check-circle"></i><span>${i}</span></div>`).join('')}
+      </div>
+
+    </div>`
+  ).join('');
+}
+function renderAdvice() {
+  document.getElementById('adviceGrid').innerHTML = articles.map(a => `
+    
+    <div class="flip-card" onclick="this.classList.toggle('flip')">
+      
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <img src="${a.img}" alt="">
+          <span class="advice-tag" style="background:${a.tc}">${a.tag}</span>
+          <h3>${a.t}</h3>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <h3>Advice</h3>
+          <p>${a.advice}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  `).join('');
+}
+function renderTests() {
+  document.getElementById('testGrid').innerHTML = reviews.map(t=>
+    `<div class="test-card"><div class="test-stars">${'★'.repeat(t.r)}${'☆'.repeat(5-t.r)}</div><p class="test-text">"${t.t}"</p><div class="test-user"><div class="test-avatar">${t.a}</div><div><div class="test-name">${t.n}</div><div class="test-verified"><i class="fas fa-check-circle"></i> Verified</div></div></div></div>`
+  ).join('');
+}
+function renderDeals() {
+  document.getElementById('dealsGrid').innerHTML = combos.map(d => `
+    
+    <div class="deal-card" onclick="toast('Combo added!')">
+      
+      <div class="deal-img">
+        <img src="${d.img}" alt="${d.t}">
+      </div>
+
+      <div class="deal-info">
+        <div class="deal-brand">${d.b}</div>
+        <h3>${d.t}</h3>
+        <div class="deal-price">₹${d.p.toLocaleString()}</div>
+        <div class="deal-mrp">MRP: ₹${d.m.toLocaleString()}</div>
+        <div class="deal-save">SAVE ₹${(d.m-d.p).toLocaleString()}</div>
+      </div>
+
+    </div>
+
+  `).join('');
+}
+
+// ========== CART ==========
+function addToCart(id) {
+  const p = allProducts.find(x=>x.id===id);
+  if(!p||!p.in_stock) return;
+  const ex = cart.find(c=>c.id===id);
+  if(ex) ex.qty++; else cart.push({...p,qty:1});
+  updateCart();
+  toast("Your item is added to your bag");
+
+  // Also POST to API if available
+  if(p.api) {
+    fetch(`${API}/api/orders`,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({product_id:p.id,quantity:1,customer_name:'Guest',customer_email:'guest@proteinkart.in'})
+    }).catch(()=>{});
+  }
+}
+
+function updateCart() {
+  const count = cart.reduce((s,c)=>s+c.qty,0);
+  const total = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('cartItemCount').textContent = count;
+  document.getElementById('cartSub').textContent = `₹${total.toLocaleString()}`;
+  document.getElementById('cartTot').textContent = `₹${total.toLocaleString()}`;
+
+  const body = document.getElementById('cartBody');
+  if(!cart.length) {
+    body.innerHTML = '<div class="cart-empty"><i class="fas fa-shopping-bag" style="font-size:40px;opacity:.15;display:block;margin-bottom:12px"></i>Your cart is empty</div>';
+    return;
+  }
+  body.innerHTML = cart.map(c => {
+    const imgUrl = c.image_url || c.img || './images/default.webp';
+
+return `<div class="ci">
+  <div class="ci-img">
+    <img src="${imgUrl}" 
+         onerror="this.src='./images/default.webp'">
+  </div>
+        <span class="ci-emoji" style="${imgUrl?'display:none':''}">${c.img||'🥛'}</span>
+      </div>
+
+<!-- 🔥 FULL WIDTH IMAGE -->
+<div class="ci-img-full">
+  <img src="${imgUrl}" onerror="this.src='./images/default.webp'">
+</div>
+
+<div class="ci-info">
+  <div class="ci-b">${c.brand}</div>
+  <h4>${c.name.substring(0,28)}...</h4>
+  <div class="ci-p">₹${(c.price*c.qty).toLocaleString()}</div>
+
+  <div class="ci-qty">
+    <button class="ci-qbtn" onclick="chgQty(${c.id},-1)">−</button>
+    <span>${c.qty}</span>
+    <button class="ci-qbtn" onclick="chgQty(${c.id},1)">+</button>
+  </div>
+</div>
+
+<button class="ci-rm" onclick="rmCart(${c.id})">
+  <i class="fas fa-trash-alt"></i>
+</button>
+
+</div>`;
+  }).join('');
+}
+
+function chgQty(id,d){const i=cart.findIndex(c=>c.id===id);if(i===-1)return;cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);updateCart()}
+function rmCart(id){cart=cart.filter(c=>c.id!==id);updateCart()}
+function toggleCart(){document.getElementById('cartOverlay').classList.toggle('open');document.getElementById('cartSidebar').classList.toggle('open')}
+
+function openCheckout() {
+  if(!cart.length) return;
+  toggleCart();
+  document.getElementById('coForm').style.display='block';
+  document.getElementById('coSuccess').style.display='none';
+  document.getElementById('coErr').style.display='none';
+  document.getElementById('osItems').innerHTML = cart.map(c=>`<div class="os-item"><span>${c.name.substring(0,25)} ×${c.qty}</span><span>₹${(c.price*c.qty).toLocaleString()}</span></div>`).join('');
+  document.getElementById('osTot').textContent = `₹${cart.reduce((s,c)=>s+c.price*c.qty,0).toLocaleString()}`;
+  document.getElementById('coOverlay').classList.add('open');
+}
+
+async function placeOrder() {
+  const name = document.getElementById('coName').value.trim();
+  const email = document.getElementById('coEmail').value.trim();
+  const err = document.getElementById('coErr');
+  if(!name||!email){err.textContent='Please fill all fields.';err.style.display='block';return}
+  if(!email.includes('@')){err.textContent='Valid email required.';err.style.display='block';return}
+  err.style.display='none';
+  const btn=document.getElementById('placeBtn');btn.textContent='Placing...';btn.disabled=true;
+  let lastOrder=null,failed=false;
+  for(const item of cart){
+    try{
+      const res=await fetch(`${API}/api/orders`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product_id:item.api?item.id:1,quantity:item.qty,customer_name:name,customer_email:email})});
+      const data=await res.json();
+      if(res.ok)lastOrder=data;else{failed=true;err.textContent=data.detail||'Order failed';err.style.display='block'}
+    }catch(e){failed=true;err.textContent='Network error';err.style.display='block'}
+  }
+  btn.textContent='Place Order';btn.disabled=false;
+  if(!failed){cart=[];updateCart();document.getElementById('coForm').style.display='none';document.getElementById('coSuccess').style.display='block';document.getElementById('successMsg').textContent=`Order #${lastOrder?.order_id||'N/A'} confirmed! Sent to ${email}.`}
+}
+
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+
+// ========== HERO SLIDER ==========
+function goSlide(n){
+  heroSlide=n;
+  document.getElementById('heroSlider').style.transform=`translateX(-${n*100}%)`;
+  document.querySelectorAll('.hero-dot').forEach((d,i)=>{d.classList.toggle('active',i===n)});
+}
+setInterval(()=>{heroSlide=(heroSlide+1)%3;goSlide(heroSlide)},5000);
+
+// ========== COUNTDOWN ==========
+function startCountdown(){
+  setInterval(()=>{
+    const now=new Date(),end=new Date(now);end.setHours(23,59,59,999);const d=end-now;
+    document.getElementById('fh').textContent=String(Math.floor(d/3600000)).padStart(2,'0');
+    document.getElementById('fm').textContent=String(Math.floor((d%3600000)/60000)).padStart(2,'0');
+    document.getElementById('fs').textContent=String(Math.floor((d%60000)/1000)).padStart(2,'0');
+  },1000);
+}
+
+// ========== TOAST ==========
+function toast(text){
+  console.log("TOAST CALLED"); // 👈 debug
+
+  const t = document.getElementById('toast');
+
+  document.getElementById('toastText').textContent = text;
+
+  t.classList.add('show');
+
+  setTimeout(() => {
+    t.classList.remove('show');
+  }, 2000);
+}
+
+// ========== SCROLL ==========
+window.addEventListener('scroll',()=>{document.getElementById('backTop').classList.toggle('show',window.scrollY>400)});
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-overlay').forEach(el=>{el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open')})});
+
+// ========== GO ==========
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - ProteinKart</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f5f5f5;
+}
+
+/* Card */
+.signup-box{
+  background:#fff;
+  padding:40px;
+  width:350px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+/* Heading */
+.signup-box h2{
+  color:#111;
+  margin-bottom:10px;
+}
+
+.signup-box span{
+  color:#e60023;
+  font-weight:bold;
+}
+
+/* Inputs */
+.input-box{
+  margin:15px 0;
+}
+
+.input-box input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  outline:none;
+  transition:0.3s;
+}
+
+.input-box input:focus{
+  border-color:#e60023;
+}
+
+/* Button */
+button{
+  width:100%;
+  padding:12px;
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#e60023;
+}
+
+/* Link */
+.link{
+  margin-top:15px;
+  font-size:14px;
+}
+
+.link a{
+  color:#e60023;
+  text-decoration:none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="signup-box">
+  <h2>Welcome to <span>ProteinKart</span></h2>
+  <p style="font-size:14px; color:#777;">Create your account</p>
+
+  <div class="input-box">
+    <input type="email" id="email" placeholder="Enter Email">
+  </div>
+
+  <div class="input-box">
+    <input type="password" id="password" placeholder="Enter Password">
+  </div>
+
+  <button onclick="register()">Sign Up</button>
+
+  <div class="link">
+    Already have account? <a href="login.html">Login</a>
+  </div>
+</div>
+
+<script>
+function register(){
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value;
+
+  if(!name || !email || !password){
+    alert("Fill all fields ❌");
+    return;
+  }
+
+  // 🔥 DIRECT SAVE (NO ARRAY)
+  let user = { name, email, password };
+
+  localStorage.setItem("user", JSON.stringify(user));
+
+  alert("Registered Successfully ✅");
+
+  window.location.href = "index.html";
+
+};
+
+
+
+</script>
+
+</body>
+</html>

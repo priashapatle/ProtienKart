@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - ProteinKart</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f5f5f5;
+}
+
+/* Card */
+.login-box{
+  background:#fff;
+  padding:40px;
+  width:350px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+/* Heading */
+.login-box h2{
+  color:#111;
+  margin-bottom:10px;
+}
+
+.login-box span{
+  color:#e60023;
+  font-weight:bold;
+}
+
+/* Inputs */
+.input-box{
+  margin:15px 0;
+}
+
+.input-box input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  outline:none;
+  transition:0.3s;
+}
+
+.input-box input:focus{
+  border-color:#e60023;
+}
+
+/* Button */
+button{
+  width:100%;
+  padding:12px;
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#e60023;
+}
+
+/* Links */
+.link{
+  margin-top:15px;
+  font-size:14px;
+}
+
+.link a{
+  color:#e60023;
+  text-decoration:none;
+}
+
+.forgot{
+  text-align:right;
+  font-size:12px;
+  margin-top:5px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="login-box">
+  <h2>Welcome Back <span>!</span></h2>
+  <p style="font-size:14px; color:#777;">Login to your account</p>
+
+  <div class="input-box">
+    <input type="email" id="email" placeholder="Email / Phone">
+  </div>
+
+  <div class="input-box">
+    <input type="password" id="password" placeholder="Password">
+    <div class="forgot">
+      <a href="#">Forgot Password?</a>
+    </div>
+  </div>
+
+  <button onclick="login()">Login Now</button>
+
+  <div class="link">
+    Don't have an account? <a href="signup.html">Sign Up</a>
+  </div>
+</div>
+
+<script>
+function login(){
+  let email = document.getElementById("loginEmail").value.trim();
+  let password = document.getElementById("loginPassword").value;
+
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  if(user && user.email === email && user.password === password){
+    alert("Login Successful ✅");
+    window.location.href = "index.html";
+  } else {
+    alert("Invalid credentials ❌");
+  }
+}
+</script>
+
+</body>
+</html>

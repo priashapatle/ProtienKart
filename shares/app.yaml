@@ -1,0 +1,10 @@
+runtime: python312
+entrypoint: uvicorn server:app --host 0.0.0.0 --port 8080
+
+env_variables:
+  SMTP_HOST: "smtp.gmail.com"
+  SMTP_PORT: "465"
+  SMTP_USER: "priashapatle@gmail.com"
+  SMTP_PASS: "nmspwugkrjggdkfz"
+  FROM_EMAIL: "priashapatle@gmail.com"
+  DB_PATH: "/tmp/proteins.db"

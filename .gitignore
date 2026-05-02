@@ -1,0 +1,23 @@
+# Secrets and Config
+.env
+
+# Database
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+
+# Distribution / packaging
+dist/
+build/
+
+# IDEs
+.vscode/
+.idea/

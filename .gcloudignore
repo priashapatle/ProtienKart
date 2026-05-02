@@ -1,0 +1,18 @@
+.git
+.venv
+__pycache__
+*.pyc
+.python-version
+.uv
+mcp_server.py
+diagnostic.pyuv sync
+diagnostic_v2.py
+test_production_tools.py
+test_slash.py
+test_server.py
+test_production_tools.py.py
+node_modules
+venv/
+.env (optional — GCP will use env vars)
+*.db
+.DS_Store
