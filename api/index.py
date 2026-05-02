@@ -287,7 +287,7 @@ app.add_middleware(
 def startup_event():
     init_db()
 
-@app.get("/")
+@app.get("/api/health")
 def health_check():
     return {"status": "ok", "service": "ProteinKart Backend", "owner": "Priasha Patle"}
 
