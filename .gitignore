@@ -2,7 +2,7 @@
 .env
 
 # Database
-*.db
+
 
 # Python
 __pycache__/

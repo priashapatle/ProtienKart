@@ -14,5 +14,4 @@ test_production_tools.py.py
 node_modules
 venv/
 .env (optional — GCP will use env vars)
-*.db
 .DS_Store
