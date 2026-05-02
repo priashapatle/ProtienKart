@@ -22,7 +22,7 @@ load_dotenv()
 
 # ── CONFIG (Modified) ────────────────────────────────────────
 # Default values hata di hain taaki GitHub par secrets leak na hon
-DB_PATH    = os.getenv("DB_PATH", "proteins.db")
+DB_PATH = os.getenv("DB_PATH", os.path.join(os.getcwd(), "proteins.db"))
 SMTP_HOST  = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT  = int(os.getenv("SMTP_PORT", "465"))
 SMTP_USER  = os.getenv("SMTP_USER") 
